@@ -2,7 +2,7 @@
 
 namespace SVG\Reading;
 
-use ReflectionProperty;
+use SVG\Nodes\NodeType;
 use SVG\Nodes\Shapes\SVGRect;
 use SVG\Nodes\SVGGenericNodeType;
 use SVG\Nodes\SVGNode;
@@ -21,20 +21,16 @@ class NodeRegistryTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @dataProvider provideItConstructsAllKnownTypes */
-    public function testItConstructsAllKnownTypes($type,$expectedResult)
+    public function testItConstructsAllKnownTypes($type, $expectedResult)
     {
         $result = NodeRegistry::create($type);
         $this->assertInstanceOf($expectedResult, $result);
         $this->assertInstanceOf(SVGNode::class, $result);
     }
 
-    public function provideItConstructsAllKnownTypes()
+    public function provideItConstructsAllKnownTypes(): \Generator
     {
-        $reflectedProperty = new ReflectionProperty(NodeRegistry::class, 'nodeTypes');
-        $reflectedProperty->setAccessible(true);
-        $types = $reflectedProperty->getValue();
-
-        foreach ($types as $type => $class) {
+        foreach (NodeType::cases() as $type => $class) {
             yield "\$type='$type'" => [$type, $class];
         }
     }

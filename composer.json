@@ -18,7 +18,7 @@
         "phpunit/phpunit": "^9.5.26",
         "meyfa/phpunit-assert-gd": "^v3.0.0",
         "phpmd/phpmd" : "^2.13.0",
-        "illuminate/support": "^10.43"
+        "illuminate/support": "*"
     },
     "suggest": {
         "ext-gd": "Needed to rasterize images",

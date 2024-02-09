@@ -27,7 +27,6 @@ class NodeTypeTest extends TestCase
     /** @dataProvider  provideEnforceNodeTypeNamingConvention */
     public function testEnforceNodeTypeNamingConvention($nodeType, $nodeFQN)
     {
-        $this->markTestSkipped("Should be completed after confirmation this is desirable");
         [$result, $message] = $this->checkNamingConvention($nodeType, $nodeFQN);
         $this->assertTrue($result, $message);
     }
